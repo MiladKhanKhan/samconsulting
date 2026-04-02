@@ -42,11 +42,22 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       font-family: var(--font-display);
       font-size: 1.4rem;
       color: var(--white);
       text-decoration: none;
       letter-spacing: 0.01em;
+    }
+    .nav-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+      background: white;
     }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -321,7 +332,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">SAM<span>Consulting</span></a>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="SAMConsulting AB logo" />
+    SAM<span>Consulting</span>
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#services">Tjänster</a></li>
     <li><a href="#expertise">Kompetenser</a></li>
@@ -520,7 +534,7 @@
         </div>
         <div>
           <div class="contact-item-label">E-post</div>
-          <div class="contact-item-value"><a href="mailto:samconsultingab@gmail.com">samconsultingab@gmail.com</a></div>
+          <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#e89b89858b87869b9d849c81868f898aa88f85898184c68b8785"><span class="__cf_email__" data-cfemail="e99a88848a86879a9c859d80878e888ba98e84888085c78a8684">[email&#160;protected]</span></a></div>
         </div>
       </div>
       <div class="contact-item">
@@ -556,14 +570,7 @@
 <footer>
   <div class="logo">SAM<span>Consulting</span> AB</div>
   <p>© 2024 SAMConsulting AB · Lund, Sverige</p>
-  <a href="mailto:samconsultingab@gmail.com">samconsultingab@gmail.com</a>
+  <a href="/cdn-cgi/l/email-protection#becddfd3ddd1d0cdcbd2cad7d0d9dfdcfed9d3dfd7d290ddd1d3"><span class="__cf_email__" data-cfemail="dfacbeb2bcb0b1acaab3abb6b1b8bebd9fb8b2beb6b3f1bcb0b2">[email&#160;protected]</span></a>
 </footer>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5
