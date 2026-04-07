@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Light grey background matching site -->
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#DFE4E8"/>
+  
+  <!-- Castle icon matching logo style - amber color #F5A623 -->
+  <!-- Main body -->
+  <rect x="14" y="28" width="36" height="16" rx="2.5" fill="#F5A623"/>
+  
+  <!-- Left turret -->
+  <rect x="14" y="20" width="11" height="12" rx="2" fill="#F5A623"/>
+  <!-- Left battlements -->
+  <rect x="14" y="15" width="4" height="7" rx="1" fill="#F5A623"/>
+  <rect x="20" y="15" width="4" height="7" rx="1" fill="#F5A623"/>
+  
+  <!-- Center turret -->
+  <rect x="26.5" y="16" width="11" height="16" rx="2" fill="#F5A623"/>
+  <!-- Center battlements -->
+  <rect x="26.5" y="10" width="4" height="8" rx="1" fill="#F5A623"/>
+  <rect x="33" y="10" width="4" height="8" rx="1" fill="#F5A623"/>
+  
+  <!-- Right turret -->
+  <rect x="39" y="20" width="11" height="12" rx="2" fill="#F5A623"/>
+  <!-- Right battlements -->
+  <rect x="39" y="15" width="4" height="7" rx="1" fill="#F5A623"/>
+  <rect x="45" y="15" width="4" height="7" rx="1" fill="#F5A623"/>
+  
+  <!-- Door arch -->
+  <path d="M23 44 L23 36 Q32 29 41 36 L41 44 Z" fill="#DFE4E8"/>
+  <!-- Door inner -->
+  <path d="M26 44 L26 37.5 Q32 32.5 38 37.5 L38 44 Z" fill="#F5A623"/>
+  <!-- Door hole -->
+  <path d="M28.5 44 L28.5 38.5 Q32 35 35.5 38.5 L35.5 44 Z" fill="#DFE4E8"/>
+
+  <!-- "HoppKul" text matching logo font -->
+  <text x="32" y="59.5" 
+    font-family="'Nunito', 'Varela Round', 'Arial Rounded MT Bold', Arial, sans-serif" 
+    font-size="8.5" 
+    font-weight="800" 
+    fill="#F5A623" 
+    text-anchor="middle"
+    letter-spacing="-0.2">HoppKul</text>
+</svg>
