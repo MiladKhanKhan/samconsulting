@@ -41,8 +41,8 @@ const Hero = () => {
             <p className="text-sm text-muted-foreground mt-1">Teknologier</p>
           </div>
           <div>
-            <p className="text-3xl font-heading font-semibold">BI</p>
-            <p className="text-sm text-muted-foreground mt-1">Analytics & AI</p>
+            <p className="text-3xl font-heading font-semibold">Analytics</p>
+            <p className="text-sm text-muted-foreground mt-1">BI & AI</p>
           </div>
         </div>
       </div>
