@@ -2,7 +2,7 @@ import { ArrowDown } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-16 px-6">
+    <section className="min-h-screen flex flex-col justify-center pt-28 px-6">
       <div className="container mx-auto max-w-5xl">
         <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-6 animate-fade-up">
           Data Analytics & Data Science
