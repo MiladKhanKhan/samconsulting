@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
-const navItems = [
-  { label: "Tjänster", href: "#services" },
-  { label: "Kompetenser", href: "#expertise" },
-  { label: "Om oss", href: "#about" },
-  
-];
+import { useLanguage } from "@/i18n/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.expertise, href: "#expertise" },
+    { label: t.nav.about, href: "#about" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -32,17 +34,17 @@ const Navbar = () => {
             href="#contact"
             className="text-sm font-medium bg-primary text-primary-foreground px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
-            Kontakt
+            {t.nav.contact}
           </a>
+          <LanguageToggle />
         </div>
 
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageToggle />
+          <button onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -57,6 +59,13 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="block text-sm font-medium text-foreground"
+            onClick={() => setOpen(false)}
+          >
+            {t.nav.contact}
+          </a>
         </div>
       )}
     </nav>

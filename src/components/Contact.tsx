@@ -1,24 +1,27 @@
 import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
-
-const contactInfo = [
-  { icon: Phone, label: "Mobil", value: "+46 73 513 17 62", href: "tel:+46735131762" },
-  { icon: Mail, label: "E-post", value: "samconsultingab@outlook.com", href: "mailto:samconsultingab@outlook.com" },
-  { icon: MapPin, label: "Adress", value: "Spolegatan 10C, 222 20 Lund", href: "https://www.google.com/maps/search/?api=1&query=Spolegatan+10C+222+20+Lund+Sverige" },
-  { icon: Linkedin, label: "LinkedIn", value: "Milad Yarahmadi", href: "https://www.linkedin.com/in/milad-yarahmadi-342a0259/" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
+
+  const contactInfo = [
+    { icon: Phone, label: t.contact.labels.mobil, value: "+46 73 513 17 62", href: "tel:+46735131762" },
+    { icon: Mail, label: t.contact.labels.epost, value: "samconsultingab@outlook.com", href: "mailto:samconsultingab@outlook.com" },
+    { icon: MapPin, label: t.contact.labels.adress, value: "The Ground c/o\nBredgatan 4, 211 30 Malmö", href: "https://www.google.com/maps/search/?api=1&query=Bredgatan+4+211+30+Malm%C3%B6+Sverige" },
+    { icon: Linkedin, label: t.contact.labels.linkedin, value: "Milad Yarahmadi", href: "https://www.linkedin.com/in/milad-yarahmadi-342a0259/" },
+  ];
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6 bg-card">
       <div className="container mx-auto max-w-5xl">
         <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
-          Kom igång
+          {t.contact.eyebrow}
         </p>
         <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
-          Kontakta oss
+          {t.contact.heading}
         </h2>
         <p className="text-muted-foreground mb-16 max-w-md">
-          Vi ser fram emot att höra från dig. Hör av dig för att diskutera hur vi kan hjälpa er organisation.
+          {t.contact.intro}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -37,7 +40,7 @@ const Contact = () => {
                   <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-1">
                     {info.label}
                   </p>
-                  <p className="text-sm font-medium">{info.value}</p>
+                  <p className="text-sm font-medium whitespace-pre-line">{info.value}</p>
                 </div>
               </Wrapper>
             );
