@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ["Sora", "sans-serif"],
         body: ["Manrope", "sans-serif"],
+        hand: ["Caveat", "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",

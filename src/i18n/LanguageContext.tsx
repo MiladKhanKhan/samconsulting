@@ -12,19 +12,19 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
-const STORAGE_KEY = "sam-lang";
+const STORAGE_KEY = "sam-lang-v2";
 
 function getInitialLang(): Lang {
   if (typeof window === "undefined") return "sv";
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
+    // Respect an explicit choice the visitor made earlier...
     if (stored === "sv" || stored === "en") return stored;
   } catch {
-    /* localStorage unavailable – fall through to detection */
+    /* localStorage unavailable – fall through to default */
   }
-  const browser = window.navigator.language?.toLowerCase() ?? "";
-  // Swedish-first site: only switch to English for clearly English browsers.
-  return browser.startsWith("en") ? "en" : "sv";
+  // ...otherwise everyone lands on Swedish.
+  return "sv";
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
