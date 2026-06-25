@@ -67,32 +67,13 @@
   }
 }
 
-/* Handwriting hero animation: ink is "written" left -> right while a pen rides the edge */
-@keyframes hw-reveal {
-  from {
-    clip-path: inset(-0.12em 100% -0.18em -0.12em);
-  }
-  to {
-    clip-path: inset(-0.12em -0.12em -0.18em -0.12em);
-  }
-}
-
-@keyframes hw-pen {
-  0% {
-    left: 0%;
-    transform: translateX(-50%) translateY(0) rotate(-8deg);
-  }
-  20% {
-    transform: translateX(-50%) translateY(-3px) rotate(-8deg);
-  }
-  45% {
-    transform: translateX(-50%) translateY(1px) rotate(-8deg);
-  }
-  70% {
-    transform: translateX(-50%) translateY(-2px) rotate(-8deg);
-  }
+/* Handwriting hero animation: gentle "hand" bob while the pen writes */
+@keyframes hw-pen-bob {
+  0%,
   100% {
-    left: 100%;
-    transform: translateX(-50%) translateY(0) rotate(-8deg);
+    transform: translateY(-0.04em) rotate(8deg);
+  }
+  50% {
+    transform: translateY(-0.12em) rotate(8deg);
   }
 }

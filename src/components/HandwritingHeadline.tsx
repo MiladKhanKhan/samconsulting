@@ -12,8 +12,10 @@ interface HandwritingHeadlineProps {
   onDone?: () => void;
 }
 
-/** How long the "writing" takes before it morphs into the final headline. */
-const WRITE_MS = 2400;
+/** Base time per character (ms). A little randomness is added for a human feel. */
+const CHAR_MS = 55;
+/** Pause after the last letter before morphing into the final headline. */
+const END_PAUSE_MS = 550;
 
 function prefersReducedMotion(): boolean {
   return (
@@ -24,12 +26,17 @@ function prefersReducedMotion(): boolean {
 }
 
 /**
- * Renders the hero headline as if it is being written by hand, then crossfades
- * ("morphs") into the normal typographic headline. The text is supplied as
- * props, so it works for any language.
+ * Writes the hero headline out letter by letter, as if by hand, with a pen that
+ * sits right after the last written character (so it follows the text and drops
+ * to the next line on its own). When finished it crossfades ("morphs") into the
+ * normal typographic headline. Text comes from props, so it works in any language.
  */
 const HandwritingHeadline = ({ pre, em, post, onDone }: HandwritingHeadlineProps) => {
   const reduce = prefersReducedMotion();
+  // "\n" forces the same two-line layout as the final headline.
+  const full = `${pre}\n${em} ${post}`;
+
+  const [count, setCount] = useState(reduce ? full.length : 0);
   const [done, setDone] = useState(reduce);
   const firedRef = useRef(false);
 
@@ -45,15 +52,33 @@ const HandwritingHeadline = ({ pre, em, post, onDone }: HandwritingHeadlineProps
       fireDone();
       return;
     }
-    const id = window.setTimeout(() => {
-      setDone(true);
-      fireDone();
-    }, WRITE_MS);
-    return () => window.clearTimeout(id);
+    let i = 0;
+    let charTimer: number;
+    let doneTimer: number;
+
+    const tick = () => {
+      i += 1;
+      setCount(i);
+      if (i < full.length) {
+        charTimer = window.setTimeout(tick, CHAR_MS + Math.random() * 45);
+      } else {
+        doneTimer = window.setTimeout(() => {
+          setDone(true);
+          fireDone();
+        }, END_PAUSE_MS);
+      }
+    };
+
+    charTimer = window.setTimeout(tick, 250);
+    return () => {
+      window.clearTimeout(charTimer);
+      window.clearTimeout(doneTimer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [full]);
 
   const sizeClasses = "text-5xl md:text-7xl lg:text-8xl leading-[1.05]";
+  const written = full.slice(0, count);
 
   return (
     <div className="relative pb-2 mb-8">
@@ -61,25 +86,25 @@ const HandwritingHeadline = ({ pre, em, post, onDone }: HandwritingHeadlineProps
       {!reduce && (
         <div
           aria-hidden="true"
-          className={`absolute inset-0 flex items-start transition-all duration-700 ease-out ${
+          className={`absolute inset-0 transition-all duration-700 ease-out ${
             done ? "opacity-0 blur-[2px] scale-[1.02] pointer-events-none" : "opacity-100"
           }`}
         >
-          <span className="relative inline-block">
-            <span
-              className={`font-hand font-semibold text-foreground ${sizeClasses}`}
-              style={{ animation: `hw-reveal ${WRITE_MS}ms ease-in-out forwards` }}
-            >
-              {pre}
-              <br />
-              {em} {post}
-            </span>
+          <span
+            className={`font-hand font-semibold text-foreground ${sizeClasses}`}
+            style={{ whiteSpace: "pre-wrap" }}
+          >
+            {written}
             {!done && (
               <Pen
-                className="absolute top-[0.15em] text-foreground drop-shadow-sm"
-                size={36}
+                className="inline-block text-foreground drop-shadow-sm"
+                size={34}
                 strokeWidth={1.75}
-                style={{ animation: `hw-pen ${WRITE_MS}ms ease-in-out forwards` }}
+                style={{
+                  verticalAlign: "-0.18em",
+                  marginLeft: "0.02em",
+                  animation: "hw-pen-bob 0.5s ease-in-out infinite",
+                }}
               />
             )}
           </span>
