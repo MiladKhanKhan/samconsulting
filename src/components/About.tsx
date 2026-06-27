@@ -7,7 +7,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 md:py-32 px-6">
       <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+        <p className="text-sm font-medium tracking-widest uppercase text-brand mb-3">
           {t.about.eyebrow}
         </p>
         <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-16">
@@ -16,7 +16,7 @@ const About = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-start">
           <div>
-            <div className="w-32 h-32 rounded-2xl bg-accent flex items-center justify-center text-3xl font-heading font-semibold text-foreground/60">
+            <div className="w-32 h-32 rounded-2xl bg-brand-tint flex items-center justify-center text-3xl font-heading font-semibold text-brand">
               MY
             </div>
             <h3 className="text-xl font-heading font-semibold mt-6">

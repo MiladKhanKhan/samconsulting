@@ -6,7 +6,7 @@ const Expertise = () => {
   return (
     <section id="expertise" className="py-24 md:py-32 px-6 bg-card">
       <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+        <p className="text-sm font-medium tracking-widest uppercase text-brand mb-3">
           {t.expertise.eyebrow}
         </p>
         <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-16">

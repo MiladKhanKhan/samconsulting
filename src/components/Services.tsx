@@ -9,7 +9,7 @@ const Services = () => {
   return (
     <section id="services" className="py-24 md:py-32 px-6">
       <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+        <p className="text-sm font-medium tracking-widest uppercase text-brand mb-3">
           {t.services.eyebrow}
         </p>
         <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-16">
@@ -24,10 +24,10 @@ const Services = () => {
                 key={service.title}
                 className="group bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-6">
-                  <Icon size={22} className="text-foreground" />
+                <div className="w-12 h-12 rounded-xl bg-brand-tint flex items-center justify-center mb-6">
+                  <Icon size={22} className="text-brand" />
                 </div>
-                <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
+                <p className="text-xs font-medium tracking-widest uppercase text-brand mb-2">
                   {service.tag}
                 </p>
                 <h3 className="text-xl font-heading font-semibold mb-3">

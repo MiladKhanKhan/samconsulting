@@ -18,9 +18,9 @@ export const translations = {
       ctaServices: "Våra tjänster",
       ctaContact: "Ta kontakt",
       stats: [
-        { value: "3+", label: "Cloud-plattformar" },
-        { value: "10+", label: "Teknologier" },
-        { value: "Analytics", label: "ML/AI & BI" },
+        { value: "10+", label: "Års erfarenhet" },
+        { value: "5+", label: "Branscher" },
+        { value: "20+", label: "Ledda specialister" },
       ],
       scroll: "Scrolla ner",
     },
@@ -101,8 +101,32 @@ export const translations = {
         linkedin: "LinkedIn",
       },
     },
+    clients: {
+      eyebrow: "Erfarenhet från",
+      items: ["IKEA", "Atos Medical", "Epiroc", "WSP", "Ikano Bank", "Enfo"],
+    },
+    testimonials: {
+      eyebrow: "Vad andra säger",
+      heading: "Omdömen",
+      items: [
+        {
+          quote:
+            "Välorganiserad, ambitiös och målmedveten, med stark analytisk förmåga i kombination med god social kompetens. Bidrar både personligt och professionellt till arbetsmiljön.",
+          role: "Grundare, teknikbolag",
+        },
+        {
+          quote:
+            "En mycket skarp person med utmärkt analytisk förmåga som tillförde stort värde till både projektet och företaget.",
+          role: "Operations & Supply Chain Manager",
+        },
+      ],
+    },
     footer: {
       rights: "Alla rättigheter förbehållna.",
+      tagline: "Din partner för datadrivna beslut.",
+      seat: "Säte: Malmö, Sverige",
+      orgnr: "Org.nr: 559XXX-XXXX",
+      linksHeading: "Snabblänkar",
     },
   },
 
@@ -123,9 +147,9 @@ export const translations = {
       ctaServices: "Our services",
       ctaContact: "Get in touch",
       stats: [
-        { value: "3+", label: "Cloud platforms" },
-        { value: "10+", label: "Technologies" },
-        { value: "Analytics", label: "ML/AI & BI" },
+        { value: "10+", label: "Years' experience" },
+        { value: "5+", label: "Industries" },
+        { value: "20+", label: "Specialists led" },
       ],
       scroll: "Scroll down",
     },
@@ -206,8 +230,32 @@ export const translations = {
         linkedin: "LinkedIn",
       },
     },
+    clients: {
+      eyebrow: "Experience from",
+      items: ["IKEA", "Atos Medical", "Epiroc", "WSP", "Ikano Bank", "Enfo"],
+    },
+    testimonials: {
+      eyebrow: "What others say",
+      heading: "Testimonials",
+      items: [
+        {
+          quote:
+            "Well-organised, ambitious and determined, with strong analytical ability combined with great social skills. Contributes both personally and professionally to the work environment.",
+          role: "Founder, technology company",
+        },
+        {
+          quote:
+            "A highly sharp individual with excellent analytical skills who added great value to both the project and the company.",
+          role: "Operations & Supply Chain Manager",
+        },
+      ],
+    },
     footer: {
       rights: "All rights reserved.",
+      tagline: "Your partner for data-driven decisions.",
+      seat: "Registered office: Malmö, Sweden",
+      orgnr: "Reg. no: 559XXX-XXXX",
+      linksHeading: "Quick links",
     },
   },
 };

@@ -90,7 +90,7 @@ const TypewriterHeadline = ({ pre, em, post, onDone }: TypewriterHeadlineProps) 
 
     if (seg.em) {
       nodes.push(
-        <em key={idx} className="font-light not-italic">
+        <em key={idx} className="font-light not-italic text-brand">
           {visible}
         </em>
       );

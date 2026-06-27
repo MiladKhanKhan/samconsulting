@@ -19,6 +19,11 @@ export default {
         hand: ["Caveat", "cursive"],
       },
       colors: {
+        brand: {
+          DEFAULT: "#0f6e56",
+          foreground: "#ffffff",
+          tint: "#e1f5ee",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

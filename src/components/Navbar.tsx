@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navItems = [
     { label: t.nav.services, href: "#services" },
@@ -14,7 +22,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b transition-shadow ${
+        scrolled ? "border-border shadow-sm" : "border-transparent"
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <a href="#" className="font-heading text-xl font-semibold tracking-tight">
           <span className="font-light">SAM</span>Consulting
@@ -32,7 +44,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="text-sm font-medium bg-primary text-primary-foreground px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+            className="text-sm font-medium bg-brand text-brand-foreground px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
             {t.nav.contact}
           </a>

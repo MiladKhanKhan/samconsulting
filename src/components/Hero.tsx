@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import TypewriterHeadline from "@/components/TypewriterHeadline";
 
@@ -37,9 +37,10 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4 mb-20">
             <a
               href="#services"
-              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+              className="group inline-flex items-center gap-2 bg-brand text-brand-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
             >
               {t.hero.ctaServices}
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
               href="#contact"

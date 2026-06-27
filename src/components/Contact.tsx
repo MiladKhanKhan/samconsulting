@@ -14,7 +14,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 md:py-32 px-6 bg-card">
       <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
+        <p className="text-sm font-medium tracking-widest uppercase text-brand mb-3">
           {t.contact.eyebrow}
         </p>
         <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
@@ -31,10 +31,10 @@ const Contact = () => {
               <Wrapper
                 key={info.label}
                 {...(info.href ? { href: info.href, target: info.href.startsWith("http") ? "_blank" : undefined, rel: info.href.startsWith("http") ? "noopener noreferrer" : undefined } : {})}
-                className="flex items-start gap-4 bg-background border border-border rounded-2xl p-6 hover:shadow-md transition-shadow"
+                className="flex items-start gap-4 bg-background border border-border rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
-                  <info.icon size={18} className="text-foreground" />
+                <div className="w-10 h-10 rounded-xl bg-brand-tint flex items-center justify-center flex-shrink-0">
+                  <info.icon size={18} className="text-brand" />
                 </div>
                 <div>
                   <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-1">
