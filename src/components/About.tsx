@@ -1,4 +1,4 @@
-import { Linkedin } from "lucide-react";
+import { Linkedin, Download } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const About = () => {
@@ -56,9 +56,11 @@ const About = () => {
             </div>
 
             <a
-              href="/Milad%20CV.pdf"
-              className="inline-block mt-4 text-sm font-medium border border-foreground/20 px-6 py-2.5 rounded-full hover:bg-accent transition-colors"
+              href="/Milad-CV.pdf"
+              download="Milad-Khankhan-CV.pdf"
+              className="inline-flex items-center gap-2 mt-4 text-sm font-medium border border-foreground/20 px-6 py-2.5 rounded-full hover:bg-accent transition-colors"
             >
+              <Download size={16} />
               {t.about.cv}
             </a>
           </div>

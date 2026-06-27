@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import HandwritingHeadline from "@/components/HandwritingHeadline";
+import TypewriterHeadline from "@/components/TypewriterHeadline";
 
 const Hero = () => {
   const { t, lang } = useLanguage();
@@ -14,9 +14,9 @@ const Hero = () => {
           {t.hero.eyebrow}
         </p>
 
-        {/* Headline is written by hand, then morphs into the styled title.
+        {/* Headline is typed out like a keyboard, then ends with looping dots.
             key={lang} replays the animation in the chosen language. */}
-        <HandwritingHeadline
+        <TypewriterHeadline
           key={lang}
           pre={t.hero.titlePre}
           em={t.hero.titleEm}
