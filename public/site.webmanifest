@@ -1,0 +1,31 @@
+{
+  "name": "SAMConsulting AB",
+  "short_name": "SAMConsulting",
+  "description": "Din partner för datadrivna beslut – specialiserad expertis inom data, analys och maskininlärning.",
+  "lang": "sv",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f5f3",
+  "theme_color": "#f7f5f3",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
