@@ -1,119 +1,76 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { ArrowDown } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import TypewriterHeadline from "@/components/TypewriterHeadline";
 
-interface TypewriterHeadlineProps {
-  /** First part of the headline, e.g. "Din partner för" */
-  pre: string;
-  /** Emphasised middle word, e.g. "datadrivna" */
-  em: string;
-  /** Last part, e.g. "beslut" */
-  post: string;
-  /** Called once when the typing has finished (or is skipped). */
-  onDone?: () => void;
-}
-
-/** Base time per keystroke (ms). A little randomness is added for a human feel. */
-const KEY_MS = 68;
-
-function prefersReducedMotion(): boolean {
-  return (
-    typeof window !== "undefined" &&
-    typeof window.matchMedia === "function" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
-}
-
-/**
- * Types the hero headline out character by character, as if typed on a keyboard,
- * with a blinking caret. When the sentence is finished, the caret is replaced by
- * three dots that load 1, 2, 3 in a repeating loop. Text comes from props, so it
- * works in any language.
- */
-const TypewriterHeadline = ({ pre, em, post, onDone }: TypewriterHeadlineProps) => {
-  const reduce = prefersReducedMotion();
-
-  // Ordered text segments. The line break keeps the same two-line layout as before.
-  const segments = [
-    { text: pre },
-    { text: " " + em, em: true },
-    { text: " " + post },
-  ];
-  const total = segments.reduce((n, s) => n + s.text.length, 0);
-
-  const [count, setCount] = useState(reduce ? total : 0);
-  const [done, setDone] = useState(reduce);
-  const firedRef = useRef(false);
-
-  const fireDone = () => {
-    if (!firedRef.current) {
-      firedRef.current = true;
-      onDone?.();
-    }
-  };
-
-  useEffect(() => {
-    if (reduce) {
-      fireDone();
-      return;
-    }
-    let i = 0;
-    let timer: number;
-
-    const tick = () => {
-      i += 1;
-      setCount(i);
-      if (i < total) {
-        timer = window.setTimeout(tick, KEY_MS + Math.random() * 55);
-      } else {
-        setDone(true);
-        fireDone();
-      }
-    };
-
-    timer = window.setTimeout(tick, 300);
-    return () => window.clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total]);
-
-  // Build the visible, typed-out content while preserving the emphasis + line break.
-  let consumed = 0;
-  const nodes: JSX.Element[] = [];
-  segments.forEach((seg, idx) => {
-    const visibleLen = Math.max(0, Math.min(seg.text.length, count - consumed));
-    let visible = seg.text.slice(0, visibleLen);
-    consumed += seg.text.length;
-
-    // First segment stays on line 1; the emphasised segment starts line 2.
-    if (idx === 1) {
-      nodes.push(<br key={`br-${idx}`} />);
-      visible = visible.replace(/^ /, ""); // drop the leading join-space at line start
-    }
-
-    if (seg.em) {
-      nodes.push(
-        <em key={idx} className="font-light not-italic">
-          {visible}
-        </em>
-      );
-    } else {
-      nodes.push(<span key={idx}>{visible}</span>);
-    }
-  });
+const Hero = () => {
+  const { t, lang } = useLanguage();
+  const [introDone, setIntroDone] = useState(false);
 
   return (
-    <div className="relative pb-2 mb-8">
-      <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-semibold leading-[1.05] tracking-tight">
-        {nodes}
-        {!done && <span className="tw-caret" aria-hidden="true" />}
-        {done && (
-          <span className="tw-dots" aria-hidden="true">
-            <span className={reduce ? "tw-dot" : "tw-dot tw-dot--anim"} />
-            <span className={reduce ? "tw-dot" : "tw-dot tw-dot--anim"} />
-            <span className={reduce ? "tw-dot" : "tw-dot tw-dot--anim"} />
-          </span>
-        )}
-      </h1>
-    </div>
+    <section className="min-h-screen flex flex-col justify-start pt-40 px-6">
+      <div className="container mx-auto max-w-5xl">
+        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-6 animate-fade-up">
+          {t.hero.eyebrow}
+        </p>
+
+        {/* Headline is typed out like a keyboard, then ends with looping dots.
+            key={lang} replays the animation in the chosen language. */}
+        <TypewriterHeadline
+          key={lang}
+          pre={t.hero.titlePre}
+          em={t.hero.titleEm}
+          post={t.hero.titlePost}
+          onDone={() => setIntroDone(true)}
+        />
+
+        {/* Everything below fades in once the handwriting has finished. */}
+        <div
+          className={`transition-all duration-700 ease-out ${
+            introDone ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          }`}
+        >
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-12">
+            {t.hero.subtitle}
+          </p>
+
+          <div className="flex flex-wrap gap-4 mb-20">
+            <a
+              href="#services"
+              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              {t.hero.ctaServices}
+            </a>
+            <a
+              href="#contact"
+              className="border border-foreground/20 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-accent transition-colors"
+            >
+              {t.hero.ctaContact}
+            </a>
+          </div>
+
+          <div className="grid grid-cols-3 gap-8 max-w-lg">
+            {t.hero.stats.map((stat, i) => (
+              <div key={i}>
+                <p className="text-3xl font-heading font-semibold">{stat.value}</p>
+                <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto max-w-5xl mt-auto pb-8">
+        <a
+          href="#services"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowDown size={16} className="animate-bounce" />
+          {t.hero.scroll}
+        </a>
+      </div>
+    </section>
   );
 };
 
-export default TypewriterHeadline;
+export default Hero;
