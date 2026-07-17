@@ -16,8 +16,12 @@ const About = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-start">
           <div>
-            <div className="w-32 h-32 rounded-2xl bg-brand-tint flex items-center justify-center text-3xl font-heading font-semibold text-brand">
-              MY
+            <div className="w-32 h-32 rounded-2xl overflow-hidden">
+              <img
+                src="/milad-portrait.png"
+                alt="Milad Yarahmadi"
+                className="w-full h-full object-cover"
+              />
             </div>
             <h3 className="text-xl font-heading font-semibold mt-6">
               Milad Yarahmadi
