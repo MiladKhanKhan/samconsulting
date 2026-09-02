@@ -1,42 +1,48 @@
-import { BarChart3, Brain, LineChart, Users } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-const icons = [BarChart3, Brain, LineChart, Users];
-
-const Services = () => {
+const Contact = () => {
   const { t } = useLanguage();
 
-  return (
-    <section id="services" className="py-24 md:py-32 px-6">
-      <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
-          {t.services.eyebrow}
-        </p>
-        <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-16">
-          {t.services.heading}
-        </h2>
+  const contactInfo = [
+    { icon: Phone, label: t.contact.labels.mobil, value: "+46 73 513 17 62", href: "tel:+46735131762" },
+    { icon: Mail, label: t.contact.labels.epost, value: "milad@samconsultingab.se", href: "mailto:milad@samconsultingab.se" },
+    { icon: MapPin, label: t.contact.labels.adress, value: "The Ground c/o\nBredgatan 4, 211 30 Malmö", href: "https://www.google.com/maps/search/?api=1&query=Bredgatan+4+211+30+Malm%C3%B6+Sverige" },
+    { icon: Linkedin, label: t.contact.labels.linkedin, value: "Milad Yarahmadi", href: "https://www.linkedin.com/in/milad-yarahmadi-342a0259/" },
+  ];
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {t.services.items.map((service, i) => {
-            const Icon = icons[i] ?? BarChart3;
+  return (
+    <section id="contact" className="py-24 md:py-32 px-6 bg-card">
+      <div className="container mx-auto max-w-5xl">
+        <p className="text-sm font-medium tracking-widest uppercase text-brand mb-3">
+          {t.contact.eyebrow}
+        </p>
+        <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
+          {t.contact.heading}
+        </h2>
+        <p className="text-muted-foreground mb-16 max-w-md">
+          {t.contact.intro}
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {contactInfo.map((info) => {
+            const Wrapper = info.href ? "a" : "div";
             return (
-              <div
-                key={service.title}
-                className="group bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              <Wrapper
+                key={info.label}
+                {...(info.href ? { href: info.href, target: info.href.startsWith("http") ? "_blank" : undefined, rel: info.href.startsWith("http") ? "noopener noreferrer" : undefined } : {})}
+                className="flex items-start gap-4 bg-background border border-border rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-6">
-                  <Icon size={22} className="text-foreground" />
+                <div className="w-10 h-10 rounded-xl bg-brand-tint flex items-center justify-center flex-shrink-0">
+                  <info.icon size={18} className="text-brand" />
                 </div>
-                <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
-                  {service.tag}
-                </p>
-                <h3 className="text-xl font-heading font-semibold mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+                <div>
+                  <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-1">
+                    {info.label}
+                  </p>
+                  <p className="text-sm font-medium whitespace-pre-line">{info.value}</p>
+                </div>
+              </Wrapper>
             );
           })}
         </div>
@@ -45,4 +51,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Contact;

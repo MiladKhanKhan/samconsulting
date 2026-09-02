@@ -1,40 +1,90 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 
-const Expertise = () => {
+const Footer = () => {
   const { t } = useLanguage();
 
-  return (
-    <section id="expertise" className="py-24 md:py-32 px-6 bg-card">
-      <div className="container mx-auto max-w-5xl">
-        <p className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-3">
-          {t.expertise.eyebrow}
-        </p>
-        <h2 className="text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-16">
-          {t.expertise.heading}
-        </h2>
+  const links = [
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.expertise, href: "#expertise" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {t.expertise.categories.map((cat) => (
-            <div key={cat.title}>
-              <h3 className="text-sm font-heading font-semibold uppercase tracking-wider mb-4">
-                {cat.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cat.items.map((item) => (
-                  <span
-                    key={item}
-                    className="text-sm bg-background border border-border px-3.5 py-1.5 rounded-full text-foreground/80"
+  return (
+    <footer className="border-t border-border px-6 pt-16 pb-8">
+      <div className="container mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+          <div>
+            <p className="font-heading text-lg font-semibold">
+              <span className="font-light">SAM</span>Consulting AB
+            </p>
+            <p className="text-sm text-muted-foreground mt-3 max-w-xs leading-relaxed">
+              {t.footer.tagline}
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium tracking-widest uppercase text-brand mb-4">
+              {t.footer.linksHeading}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-muted-foreground hover:text-brand transition-colors"
                   >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium tracking-widest uppercase text-brand mb-4">
+              {t.nav.contact}
+            </p>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="mailto:milad@samconsultingab.se"
+                  className="text-muted-foreground hover:text-brand transition-colors break-all"
+                >
+                  milad@samconsultingab.se
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+46735131762"
+                  className="text-muted-foreground hover:text-brand transition-colors"
+                >
+                  +46 73 513 17 62
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/milad-yarahmadi-342a0259/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-brand transition-colors"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} SAMConsulting AB. {t.footer.rights}</p>
+          <p>
+            {t.footer.seat} · {t.footer.orgnr}
+          </p>
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 
-export default Expertise;
+export default Footer;
