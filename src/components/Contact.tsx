@@ -6,7 +6,7 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: Phone, label: t.contact.labels.mobil, value: "+46 73 513 17 62", href: "tel:+46735131762" },
-    { icon: Mail, label: t.contact.labels.epost, value: "samconsultingab@outlook.com", href: "mailto:samconsultingab@outlook.com" },
+    { icon: Mail, label: t.contact.labels.epost, value: "milad@samconsultingab.se", href: "mailto:milad@samconsultingab.se" },
     { icon: MapPin, label: t.contact.labels.adress, value: "The Ground c/o\nBredgatan 4, 211 30 Malmö", href: "https://www.google.com/maps/search/?api=1&query=Bredgatan+4+211+30+Malm%C3%B6+Sverige" },
     { icon: Linkedin, label: t.contact.labels.linkedin, value: "Milad Yarahmadi", href: "https://www.linkedin.com/in/milad-yarahmadi-342a0259/" },
   ];
